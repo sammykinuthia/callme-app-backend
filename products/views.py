@@ -6,21 +6,22 @@ from .permissions import IsOwnerOrReadOnly
 from .serializer import ProductSerializer, UserSerializer
 
 
-class ViewProducts(generics.ListCreateAPIView):
+class ViewProducts(generics.ListCreateAPIView, format=None):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
 
-class ViewProductDetails(generics.RetrieveDestroyAPIView):
+class ViewProductDetails(generics.RetrieveDestroyAPIView, format=None):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
-class UserList(generics.ListAPIView):
+class UserList(generics.ListAPIView, format=None):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class UserDetails(generics.RetrieveDestroyAPIView):
+
+class UserDetails(generics.RetrieveDestroyAPIView, format=None):
     queryset = User.objects.all()
     serializer_class = UserSerializer
